@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dulce Panela - Repostería Artesanal | Arma tu Pedido</title>
+  
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #FDFBF7;
+      --card-bg: #FFFFFF;
+      --text-primary: #4A2E2B;
+      --text-secondary: #7A5C58;
+      --accent-pink: #F4ACB7;
+      --accent-pink-hover: #E88D9D;
+      --accent-pink-light: #FFF0F3;
+      --border-color: #EFE5DC;
+      --whatsapp-green: #25D366;
+      --whatsapp-hover: #1EBE57;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 4px 12px rgba(74, 46, 43, 0.04);
+      --shadow-md: 0 8px 24px rgba(74, 46, 43, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 20px 16px 40px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Encabezado */
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 10px 0;
+    }
+
+    .brand-icon {
+      font-size: 2.8rem;
+      display: inline-block;
+      margin-bottom: 8px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* Formulario */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card-section {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--accent-pink-light);
+      padding-bottom: 8px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    label .required {
+      color: var(--accent-pink-hover);
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="datetime-local"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      background-color: var(--bg-color);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent-pink-hover);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 4px var(--accent-pink-light);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Opciones interactivas tipo Chip/Card */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .options-grid.two-cols {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .option-card {
+      position: relative;
+    }
+
+    .option-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .option-card label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 8px;
+      background-color: var(--bg-color);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      font-size: 0.85rem;
+      gap: 4px;
+    }
+
+    .option-card label .emoji {
+      font-size: 1.4rem;
+    }
+
+    .option-card input[type="radio"]:checked + label {
+      border-color: var(--accent-pink-hover);
+      background-color: var(--accent-pink-light);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Campo Condicional Dirección */
+    #address-group {
+      display: none;
+      margin-top: 12px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Botón Submit */
+    .btn-submit {
+      width: 100%;
+      padding: 16px 20px;
+      background-color: var(--whatsapp-green);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover, .btn-submit:active {
+      background-color: var(--whatsapp-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-submit svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Modal de Confirmación */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(74, 46, 43, 0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .modal-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      width: 100%;
+      padding: 12px 16px;
+      background-color: var(--accent-pink-light);
+      color: var(--text-primary);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--accent-pink);
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--accent-pink);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="brand-icon">🧁</span>
+      <h1>Dulce Panela</h1>
+      <p class="subtitle">Repostería Artesanal por Encargo</p>
+    </header>
+
+    <form id="orderForm">
+      <!-- Sección 1: Datos del Cliente -->
+      <div class="card-section">
+        <h2 class="section-title">👤 Tus Datos</h2>
+        
+        <div class="form-group">
+          <label for="nombre">Nombre Completo <span class="required">*</span></label>
+          <input type="text" id="nombre" placeholder="Ej. María García" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp <span class="required">*</span></label>
+          <input type="tel" id="telefono" placeholder="Ej. 300 123 4567" required>
+        </div>
+      </div>
+
+      <!-- Sección 2: Detalles del Pedido -->
+      <div class="card-section">
+        <h2 class="section-title">🍰 Detalles del Pedido</h2>
+        
+        <div class="form-group">
+          <label>Tipo de Producto <span class="required">*</span></label>
+          <div class="options-grid">
+            <div class="option-card">
+              <input type="radio" id="prod-torta" name="producto" value="Torta" checked>
+              <label for="prod-torta">
+                <span class="emoji">🎂</span>
+                <span>Torta</span>
+              </label>
+            </div>
+            <div class="option-card">
+              <input type="radio" id="prod-brownie" name="producto" value="Brownie">
+              <label for="prod-brownie">
+                <span class="emoji">🍫</span>
+                <span>Brownie</span>
+              </label>
+            </div>
+            <div class="option-card">
+              <input type="radio" id="prod-galletas" name="producto" value="Galletas">
+              <label for="prod-galletas">
+                <span class="emoji">🍪</span>
+                <span>Galletas</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sabor">Sabor Deseado</label>
+          <input type="text" id="sabor" placeholder="Ej. Chocolate con manjar, Red Velvet, Vainilla...">
+        </div>
+
+        <div class="form-group">
+          <label for="tamano">Tamaño / Porciones</label>
+          <input type="text" id="tamano" placeholder="Ej. 10 porciones, Caja x 6 unidades...">
+        </div>
+
+        <div class="form-group">
+          <label for="cantidad">Cantidad de Pedidos</label>
+          <input type="number" id="cantidad" value="1" min="1" max="50">
+        </div>
+      </div>
+
+      <!-- Sección 3: Entrega y Fecha -->
+      <div class="card-section">
+        <h2 class="section-title">🚗 Entrega y Fecha</h2>
+        
+        <div class="form-group">
+          <label>Método de Entrega <span class="required">*</span></label>
+          <div class="options-grid two-cols">
+            <div class="option-card">
+              <input type="radio" id="ent-local" name="entrega" value="Recojo en local" checked>
+              <label for="ent-local">
+                <span class="emoji">🏪</span>
+                <span>Recojo en local</span>
+              </label>
+            </div>
+            <div class="option-card">
+              <input type="radio" id="ent-domicilio" name="entrega" value="Envío a domicilio">
+              <label for="ent-domicilio">
+                <span class="emoji">🛵</span>
+                <span>Envío a domicilio</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" id="address-group">
+          <label for="direccion">Dirección de Entrega <span class="required">*</span></label>
+          <input type="text" id="direccion" placeholder="Calle, número, barrio o apto...">
+        </div>
+
+        <div class="form-group">
+          <label for="fecha">Fecha y Hora Deseada de Entrega <span class="required">*</span></label>
+          <input type="datetime-local" id="fecha" required>
+        </div>
+      </div>
+
+      <!-- Sección 4: Notas adicionales -->
+      <div class="card-section">
+        <h2 class="section-title">📝 Notas Especiales</h2>
+        <div class="form-group">
+          <label for="notas">Detalles adicionales</label>
+          <textarea id="notas" placeholder="Ej. Mensaje en la torta, alergias a tomar en cuenta, empaque para regalo..."></textarea>
+        </div>
+      </div>
+
+      <!-- Botón de Envío -->
+      <button type="submit" class="btn-submit">
+        <svg viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+        Enviar Pedido por WhatsApp
+      </button>
+    </form>
+
+    <footer>
+      <p>© Dulce Panela - Repostería Artesanal</p>
+    </footer>
+  </div>
+
+  <!-- Modal de Confirmación -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-content">
+      <div class="modal-icon">🎉</div>
+      <h3 class="modal-title">¡Gracias por tu pedido!</h3>
+      <p class="modal-text">Te estamos redirigiendo a WhatsApp para enviar el resumen completo de tu compra.</p>
+      <a href="#" id="manualWaBtn" target="_blank" class="btn-secondary">Abrir WhatsApp Manualmente</a>
+    </div>
+  </div>
+
+  <script>
+    // Configuración del Número de WhatsApp (Reemplaza con tu número con código de país, ej: 573001234567)
+    const NUMERO_WHATSAPP = "573001234567";
+
+    // Elementos del DOM
+    const orderForm = document.getElementById('orderForm');
+    const radioEntregaLocal = document.getElementById('ent-local');
+    const radioEntregaDomicilio = document.getElementById('ent-domicilio');
+    const addressGroup = document.getElementById('address-group');
+    const inputDireccion = document.getElementById('direccion');
+    const confirmModal = document.getElementById('confirmModal');
+    const manualWaBtn = document.getElementById('manualWaBtn');
+
+    // Manejar visibilidad del campo Dirección
+    function toggleAddressField() {
+      if (radioEntregaDomicilio.checked) {
+        addressGroup.style.display = 'flex';
+        inputDireccion.setAttribute('required', 'required');
+      } else {
+        addressGroup.style.display = 'none';
+        inputDireccion.removeAttribute('required');
+        inputDireccion.value = '';
+      }
+    }
+
+    radioEntregaLocal.addEventListener('change', toggleAddressField);
+    radioEntregaDomicilio.addEventListener('change', toggleAddressField);
+
+    // Formatear Fecha y Hora a lectura amigable
+    function formatDateTime(datetimeString) {
+      if (!datetimeString) return "No especificada";
+      const dt = new Date(datetimeString);
+      const options = { 
+        weekday: 'short', 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true 
+      };
+      return dt.toLocaleDateString('es-ES', options);
+    }
+
+    // Manejar el envío del formulario
+    orderForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Recopilar valores
+      const nombre = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const producto = document.querySelector('input[name="producto"]:checked').value;
+      const sabor = document.getElementById('sabor').value.trim() || 'No especificado';
+      const tamano = document.getElementById('tamano').value.trim() || 'No especificado';
+      const cantidad = document.getElementById('cantidad').value || '1';
+      const metodoEntrega = document.querySelector('input[name="entrega"]:checked').value;
+      const direccion = inputDireccion.value.trim();
+      const fechaHoraRaw = document.getElementById('fecha').value;
+      const fechaHoraFormatted = formatDateTime(fechaHoraRaw);
+      const notas = document.getElementById('notas').value.trim() || 'Sin notas adicionales';
+
+      // Construir texto de entrega
+      let entregaText = metodoEntrega;
+      if (metodoEntrega === 'Envío a domicilio' && direccion) {
+        entregaText += ` (${direccion})`;
+      }
+
+      // Armar el mensaje estructurado con emojis
+      const mensaje = 
+`🍰 *NUEVO PEDIDO - DULCE PANELA* 🍰
+--------------------------------
+👤 *Cliente:* ${nombre}
+📞 *Teléfono:* ${telefono}
+🧁 *Producto:* ${producto}
+🍫 *Sabor:* ${sabor}
+📏 *Tamaño/Porciones:* ${tamano}
+🔢 *Cantidad:* ${cantidad}
+🚗 *Entrega:* ${entregaText}
+📅 *Fecha de Entrega:* ${fechaHoraFormatted}
+📝 *Notas:* ${notas}`;
+
+      // Crear URL codificada de WhatsApp
+      const whatsappUrl = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+
+      // Configurar enlace manual y abrir WhatsApp
+      manualWaBtn.href = whatsappUrl;
+      confirmModal.classList.add('active');
+
+      // Intentar abrir automáticamente en 1.2 segundos
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
